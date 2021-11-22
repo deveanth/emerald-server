@@ -16,6 +16,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@setting/*":["src/setting/*"],
+      "@database/*":["src/database/*"],
+      "@utils/*":["src/utils/*"],
+      "@transaction/*":["src/transaction/*"],
+      "@wallet/*":["src/wallet/*"]
+    }
   }
 }
