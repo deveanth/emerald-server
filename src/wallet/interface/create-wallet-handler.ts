@@ -16,15 +16,7 @@ export class CreateWalletHandler
 	}
 
 	async execute(command: CreateWalletCommand) {
-		try {
-			const { name, balance, icon } = command;
-			return await this.serviceWriteWallet.createWallet(
-				name,
-				balance,
-				icon,
-			);
-		} catch (error) {
-			return new ResponseError(error);
-		}
+		const { name, balance, icon } = command;
+		return await this.serviceWriteWallet.createWallet(name, balance, icon);
 	}
 }

@@ -1,11 +1,6 @@
-import {
-	Body,
-	Controller,
-	HttpCode,
-	HttpStatus,
-	Post,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
+import { ResponseError } from '@utils/response-error';
 import { CreateWalletCommand } from './create-wallet-command';
 import { CreateWalletDTO } from './create-wallet-dto';
 
@@ -15,8 +10,12 @@ export class WriteWalletController {
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	async create(@Body() { name, balance, icon }: CreateWalletDTO) {
-		return await this.commandBus.execute(
-			new CreateWalletCommand(name, balance, icon),
-		);
+		try {
+			return await this.commandBus.execute(
+				new CreateWalletCommand(name, balance, icon),
+			);
+		} catch (error) {
+			throw new ResponseError(error);
+		}
 	}
 }
