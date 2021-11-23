@@ -1,9 +1,8 @@
 import { Wallet } from '../domain/wallet';
 
-export interface IWriteWalletRepository<E> {
-	create(wallet: Wallet): Promise<E>;
-
-	remove(id?:number,name?:string): Promise<E>;
+export interface IWriteWalletRepository {
+	create(wallet: Wallet): Promise<any>;
+	remove(id?:number,name?:string): Promise<any>;
 }
 
 

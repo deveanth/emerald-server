@@ -1,23 +1,23 @@
 import { WalletObject } from '@wallet/domain/wallet-object';
 import { IWriteWalletRepository } from './iwallet-repository';
 
-export class ServiceWriteWallet<E> {
+export class ServiceWriteWallet {
 	
 	private readonly objectWallet:WalletObject;
 
-	constructor(private readonly walletRepository: IWriteWalletRepository<E>) {
+	constructor(private readonly walletRepository: IWriteWalletRepository) {
 		this.walletRepository = walletRepository;
 		this.objectWallet = new WalletObject();
 	}
 
-	async createWallet(name: string, balance: number, icon: string): Promise<E> {
+	async createWallet(name: string, balance: number, icon: string): Promise<any> {
 		
 		return await this.walletRepository.create(
 			this.objectWallet.getWallet(name, balance, icon),
 		);
 	}
 
-	async removeWallet(id?:number,name?:string): Promise<E>{
+	async removeWallet(id?:number,name?:string): Promise<any>{
 		this.objectWallet.isExistWallet(id,name);
 		return await this.walletRepository.remove(id,name);
 	}
