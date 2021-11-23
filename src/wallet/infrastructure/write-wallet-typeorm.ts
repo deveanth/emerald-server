@@ -31,7 +31,6 @@ export class WriteWalletTypeORM implements IWriteWalletRepository {
 
 		await this.walletRepository.remove(walletEntity);
 		return walletEntity;
-<<<<<<< HEAD
 	}
 
 	async update(id: number, name?: string, balance?: number, icon?: string): Promise<any> {
@@ -44,8 +43,6 @@ export class WriteWalletTypeORM implements IWriteWalletRepository {
 		walletEntity.icon = icon;
 
 		return await this.walletRepository.save(walletEntity);
-=======
->>>>>>> develop-domain-read-wallet
 	}
 
 }
