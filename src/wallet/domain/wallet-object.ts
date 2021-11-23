@@ -1,5 +1,5 @@
 import { Wallet } from './wallet';
-import { WalletError, WalletIconError } from './wallet-error';
+import { WalletError, WalletIconError,isExistWalletError } from './wallet-error';
 
 export class WalletObject {
 	getWallet(name: string, balance: number, icon: string): Wallet {
@@ -19,5 +19,13 @@ export class WalletObject {
 		}
 
 		throw new WalletIconError();
+	}
+
+	isExistWallet(id ?: number ,name ?: string ): void{
+		// validar el los espacios del name     
+		if((id === undefined && name === undefined) || isNaN(id) ){
+			throw new isExistWalletError();
+		}
+		
 	}
 }

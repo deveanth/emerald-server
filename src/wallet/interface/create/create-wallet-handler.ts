@@ -1,9 +1,8 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { ResponseError } from '@utils/response-error';
 import { ServiceWriteWallet } from '@wallet/application/service-write-wallet';
-import { WriteWallet } from '@wallet/infrastructure/write-wallet';
+import { WriteWalletTypeORM } from '@wallet/infrastructure/write-wallet-typeorm';
 import { CreateWalletCommand } from './create-wallet-command';
-import { WalletEntity } from '../infrastructure/wallet-entity';
+import { WalletEntity } from '../../infrastructure/wallet-entity';
 
 @CommandHandler(CreateWalletCommand)
 export class CreateWalletHandler
@@ -11,12 +10,11 @@ export class CreateWalletHandler
 {
 	private readonly serviceWriteWallet: ServiceWriteWallet<WalletEntity>;
 
-	constructor(private readonly writeWallet: WriteWallet) {
-		this.serviceWriteWallet = new ServiceWriteWallet(this.writeWallet);
+	constructor(private readonly writeWalletTypeORM: WriteWalletTypeORM) {
+		this.serviceWriteWallet = new ServiceWriteWallet(this.writeWalletTypeORM);
 	}
 
-	async execute(command: CreateWalletCommand) {
-		const { name, balance, icon } = command;
+	async execute({name,balance,icon}: CreateWalletCommand): Promise<WalletEntity> {
 		return await this.serviceWriteWallet.createWallet(name, balance, icon);
 	}
 }

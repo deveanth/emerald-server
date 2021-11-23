@@ -1,8 +1,10 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Delete, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { ResponseError } from '@utils/response-error';
-import { CreateWalletCommand } from './create-wallet-command';
-import { CreateWalletDTO } from './create-wallet-dto';
+import { CreateWalletCommand } from './create/create-wallet-command';
+import { CreateWalletDTO } from './create/create-wallet-dto';
+import { RemoveWalletCommand } from './remove/remove-wallet-command';
+import { RemoveWalletDTO } from './remove/remove-wallet-dto';
 
 @Controller('wallet')
 export class WriteWalletController {
@@ -18,4 +20,15 @@ export class WriteWalletController {
 			throw new ResponseError(error);
 		}
 	}
+
+	@Delete()
+	@HttpCode(HttpStatus.OK)
+	async remove(@Body() {id,name}: RemoveWalletDTO){
+		try{
+			return await this.commandBus.execute(new RemoveWalletCommand(id,name));
+		}catch(error){
+			throw new ResponseError(error);
+		}
+	}
+
 }
