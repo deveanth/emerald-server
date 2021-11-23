@@ -13,7 +13,7 @@ async function bootstrap() {
 	Logger.log(
 		`${customChalk.hex('#00F50F ').bold('Emerald running')}  ${customChalk
 			.hex('#D38BFF')
-			.bold('http://localhost:4000/')} 💥`,
+			.bold(`http://localhost:${port}/`)} 💥`,
 		'Server',
 	);
 }

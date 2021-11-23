@@ -4,11 +4,11 @@ import { ResponseError } from '@utils/response-error';
 import { CreateWalletCommand } from './create-wallet-command';
 import { CreateWalletDTO } from './create-wallet-dto';
 
-@Controller('write-wallet')
+@Controller('wallet')
 export class WriteWalletController {
 	constructor(private readonly commandBus: CommandBus) {}
 	@Post()
-	@HttpCode(HttpStatus.CREATED)
+	@HttpCode(HttpStatus.OK)
 	async create(@Body() { name, balance, icon }: CreateWalletDTO) {
 		try {
 			return await this.commandBus.execute(
