@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { IWriteWalletRepository } from "@wallet/application/iwallet-repository";
+import { IWriteWalletRepository } from "@wallet/application/iwrite-wallet-repository";
 import { Wallet } from "@wallet/domain/wallet";
 import { WalletEntity } from "./wallet-entity";
 import { WalletEntityError } from "./wallet-entity-error";
@@ -8,7 +8,7 @@ import { WalletRepository } from "./wallet-repository";
 
 @Injectable()
 export class WriteWalletTypeORM
-	implements IWriteWalletRepository<WalletEntity>
+	implements IWriteWalletRepository
 {
 	constructor(private readonly walletRepository: WalletRepository) {}
 
@@ -20,7 +20,7 @@ export class WriteWalletTypeORM
 		return await this.walletRepository.save(walletEntity);
 	}
 
-	async remove(id?: number, name?: string): Promise<WalletEntity> {
+	async remove(id?: number, name?: string): Promise<any> {
 		let walletEntity: WalletEntity = await this.walletRepository.findOne(id);
 		if(!walletEntity){
 			walletEntity = await this.walletRepository.findOne({name});

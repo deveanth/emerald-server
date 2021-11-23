@@ -1,5 +1,5 @@
 import { WalletObject } from '@wallet/domain/wallet-object';
-import { IWriteWalletRepository } from './iwallet-repository';
+import { IWriteWalletRepository } from './iwrite-wallet-repository';
 
 export class ServiceWriteWallet {
 	
