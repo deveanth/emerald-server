@@ -13,4 +13,8 @@ export class ServiceReadWallet {
 		this.objectWallet.isExistWallet(id, name);
 		return await this.walletRepository.findOne(id, name);
 	}
+
+	async findAll(): Promise<any> {
+		return await this.walletRepository.findAll();
+	}
 }

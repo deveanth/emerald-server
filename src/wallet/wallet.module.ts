@@ -10,6 +10,7 @@ import { CreateWalletHandler } from './interface/create/create-wallet-handler';
 import { RemoveWalletHandler } from './interface/remove/remove-wallet-handler';
 import { UpdateWalletHandler } from './interface/update/update-wallet-handler';
 import { FindOneWalletHandler } from './interface/find-one/find-one-wallet-handler';
+import { FindAllWalletHandler } from './interface/find/find-all-wallet-handler';
 
 export const CommandHandlers = [
 	CreateWalletHandler,
@@ -17,7 +18,7 @@ export const CommandHandlers = [
 	UpdateWalletHandler,
 ];
 
-export const QueryHandler = [FindOneWalletHandler];
+export const QueryHandler = [FindOneWalletHandler, FindAllWalletHandler];
 @Module({
 	imports: [CqrsModule, TypeOrmModule.forFeature([WalletRepository])],
 	providers: [

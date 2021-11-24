@@ -18,4 +18,8 @@ export class ReadWalletTypeORM implements IReadWalletRepository {
 		}
 		return walletEntity;
 	}
+
+	findAll(): Promise<any> {
+		return this.walletRepository.find();
+	}
 }
