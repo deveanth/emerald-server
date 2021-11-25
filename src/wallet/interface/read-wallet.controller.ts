@@ -1,7 +1,6 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { ResponseError } from '@utils/response-error';
-import { FindOneWalletDTO } from './find-one/find-one-wallet-dto';
 import { FindOneWalletQuery } from './find-one/find-one-wallet-query';
 import { FindAllWalletHandler } from './find/find-all-wallet-handler';
 
@@ -12,16 +11,16 @@ export class ReadWalletController {
 		private readonly queryFindAll: FindAllWalletHandler,
 	) {}
 
-	@Get()
-	async findOne(@Body() { id, name }: FindOneWalletDTO) {
+	@Get(':id')
+	async findOne(@Param('id') id: number) {
 		try {
-			return await this.queryBus.execute(new FindOneWalletQuery(id, name));
+			return await this.queryBus.execute(new FindOneWalletQuery(id));
 		} catch (error) {
 			throw new ResponseError(error);
 		}
 	}
 
-	@Get('/all')
+	@Get()
 	async findAll() {
 		try {
 			return await this.queryFindAll.execute();

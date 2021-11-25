@@ -17,9 +17,9 @@ export class ServiceWriteWallet {
 		);
 	}
 
-	async removeWallet(id?:number,name?:string): Promise<any>{
-		this.objectWallet.isExistWallet(id,name);
-		return await this.walletRepository.remove(id,name);
+	async removeWallet(id:number): Promise<any>{
+		this.objectWallet.isExistWallet(id);
+		return await this.walletRepository.remove(id);
 	}
 	
 	async updateWallet(id:number,name?:string,balance?:number,icon?:string): Promise<any>{

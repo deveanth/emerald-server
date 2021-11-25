@@ -8,11 +8,8 @@ import { WalletRepository } from './wallet-repository';
 export class ReadWalletTypeORM implements IReadWalletRepository {
 	constructor(private readonly walletRepository: WalletRepository) {}
 
-	async findOne(id?: number, name?: string): Promise<any> {
+	async findOne(id: number): Promise<any> {
 		let walletEntity: WalletEntity = await this.walletRepository.findOne(id);
-		if (!walletEntity) {
-			walletEntity = await this.walletRepository.findOne({ name });
-		}
 		if (!walletEntity) {
 			throw new WalletEntityError();
 		}

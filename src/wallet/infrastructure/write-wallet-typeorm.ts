@@ -8,8 +8,6 @@ import { WalletRepository } from './wallet-repository';
 @Injectable()
 export class WriteWalletTypeORM implements IWriteWalletRepository {
 	constructor(private readonly walletRepository: WalletRepository) {}
-	
-	
 
 	async create({ name, balance, icon }: Wallet) {
 		const walletEntity: WalletEntity = this.walletRepository.create();
@@ -19,12 +17,8 @@ export class WriteWalletTypeORM implements IWriteWalletRepository {
 		return await this.walletRepository.save(walletEntity);
 	}
 
-	async remove(id?: number, name?: string): Promise<any> {
+	async remove(id: number): Promise<any> {
 		let walletEntity: WalletEntity = await this.walletRepository.findOne(id);
-		if (!walletEntity) {
-			walletEntity = await this.walletRepository.findOne({ name });
-		}
-
 		if (!walletEntity) {
 			throw new WalletEntityError();
 		}
@@ -33,9 +27,14 @@ export class WriteWalletTypeORM implements IWriteWalletRepository {
 		return walletEntity;
 	}
 
-	async update(id: number, name?: string, balance?: number, icon?: string): Promise<any> {
-		let walletEntity:WalletEntity = await this.walletRepository.findOne(id);
-		if(!walletEntity){
+	async update(
+		id: number,
+		name?: string,
+		balance?: number,
+		icon?: string,
+	): Promise<any> {
+		let walletEntity: WalletEntity = await this.walletRepository.findOne(id);
+		if (!walletEntity) {
 			throw new WalletEntityError();
 		}
 		walletEntity.name = name;
@@ -44,5 +43,4 @@ export class WriteWalletTypeORM implements IWriteWalletRepository {
 
 		return await this.walletRepository.save(walletEntity);
 	}
-
 }

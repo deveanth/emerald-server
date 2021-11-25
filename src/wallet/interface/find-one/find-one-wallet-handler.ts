@@ -11,7 +11,7 @@ export class FindOneWalletHandler implements IQueryHandler<FindOneWalletQuery> {
 		this.serviceReadWallet = new ServiceReadWallet(this.readWalletTypeORM);
 	}
 
-	async execute({ id, name }: FindOneWalletQuery): Promise<any> {
-		return await this.serviceReadWallet.findOne(id, name);
+	async execute({ id }: FindOneWalletQuery): Promise<any> {
+		return await this.serviceReadWallet.findOne(id);
 	}
 }

@@ -9,9 +9,9 @@ export class ServiceReadWallet {
 		this.objectWallet = new WalletObject();
 	}
 
-	async findOne(id?: number, name?: string): Promise<any> {
-		this.objectWallet.isExistWallet(id, name);
-		return await this.walletRepository.findOne(id, name);
+	async findOne(id: number): Promise<any> {
+		this.objectWallet.isExistWallet(id);
+		return await this.walletRepository.findOne(id);
 	}
 
 	async findAll(): Promise<any> {

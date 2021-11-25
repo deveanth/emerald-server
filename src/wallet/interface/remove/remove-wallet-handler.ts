@@ -11,7 +11,7 @@ export class RemoveWalletHandler implements ICommandHandler<RemoveWalletCommand>
 		this.serviceWriteWallet = new ServiceWriteWallet(this.writeWalletTypeORM);
 	}
 
-    async execute({id,name}: RemoveWalletCommand): Promise<any> {
-        return await this.serviceWriteWallet.removeWallet(id,name);
+    async execute({id}: RemoveWalletCommand): Promise<any> {
+        return await this.serviceWriteWallet.removeWallet(id);
     }
 }

@@ -10,6 +10,5 @@ import Environment from '@setting/environment-config';
 		}),
 	],
 	exports: [ConfigModule],
-	providers: [],
 })
 export class SettingModule {}

@@ -1,4 +1,4 @@
 export interface IReadWalletRepository {
-	findOne(id?: number, name?: string): Promise<any>;
+	findOne(id: number): Promise<any>;
 	findAll(): Promise<any>;
 }
